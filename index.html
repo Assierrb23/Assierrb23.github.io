@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assier Rodriguez Baeza - Página Personal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            text-align: center;
+            padding: 20px;
+            transition: background 0.5s;
+            margin: 0;
+            padding-bottom: 100px; /* Espacio para el footer */
+        }
+        .container {
+            max-width: 700px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            margin: auto;
+        }
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        img:hover {
+            transform: scale(1.1);
+        }
+        h1, h2 {
+            color: #333;
+            transition: color 0.3s;
+        }
+        h1:hover {
+            color: #ff5733;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .section {
+            display: none;
+            margin-bottom: 20px;
+        }
+        .active {
+            display: block;
+        }
+        nav {
+            margin-bottom: 20px;
+            background: #007BFF;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        nav a {
+            margin: 0 10px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 8px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+            opacity: 0;
+            transition: opacity 1s, transform 0.5s;
+        }
+        footer.show-footer {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        footer a {
+            color: #ffde7d;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .skills-box {
+            display: inline-block;
+            width: 30%;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f3f4f6;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .skills-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .skills-box h3 {
+            color: #333;
+        }
+        .skills-box ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .skills-box ul li {
+            margin-bottom: 8px;
+            color: #666;
+        }
+        @media (max-width: 768px) {
+            .skills-box {
+                width: 80%;
+                margin: 10px auto;
+            }
+        }
+        /* Estilo para la Información Personal */
+        .personal-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            text-align: left;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .personal-info li {
+            font-size: 1.1em;
+            color: #444;
+        }
+        .personal-info img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        .cv-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .cv-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .cv-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .greeting-button {
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .greeting-button:hover {
+            background-color: #ff2a00;
+        }
+        #greetingMessage {
+            font-size: 1.3em;
+            color: #333;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        #greetingMessage.visible {
+            opacity: 1;
+        }
+        /* Estilos para el texto sobre mí */
+        #about p {
+            text-align: justify; /* Alineación justificada para mejor lectura */
+            font-size: 1.1em; /* Tamaño de fuente cómodo */
+            line-height: 1.6; /* Mayor interlineado para mejorar la legibilidad */
+            margin-bottom: 20px; /* Espacio entre párrafos */
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 onclick="changeBackground()">Assier Rodriguez Baeza</h1>
+        <nav>
+            <a onclick="showSection('home')">🏠 Home</a>
+            <a onclick="showSection('about')">👨‍💻 Sobre Mí</a>
+            <a onclick="showSection('skills')">📚 Conocimientos</a>
+            <a onclick="showSection('cv')">📄 Currículum</a>
+        </nav>
+
+        <div id="home" class="section active">
+            <h2>Información Personal</h2>
+            <div class="personal-info">
+                <img src="EL MENDA LERENDA2.jpg" alt="Foto de Assier Rodriguez Baeza">
+                <ul>
+                    <li><strong>Fecha de nacimiento:</strong> 9 de Abril de 2006</li>
+                    <li><strong>Nacionalidad:</strong> Española</li>
+                    <li><strong>Dirección:</strong> C/ Coret i Peris 14, 3</li>
+                    <li><strong>Localidad:</strong> Alboraya</li>
+                    <li><strong>Provincia:</strong> Valencia</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="about" class="section">
+            <h2 onclick="changeTextColor(this)">Sobre Mí</h2>
+            <p>Soy un joven estudiante de Desarrollo de Aplicaciones Multiplataforma (DAM) con una gran pasión por la programación y todo lo relacionado con la tecnología. Desde que empecé a programar, me he sentido fascinado por cómo puedo crear soluciones innovadoras para problemas cotidianos. La creatividad es algo que siempre busco poner en mis proyectos, intentando encontrar maneras originales de abordar los retos.</p>
+
+            <p>Tengo muchas ganas de seguir aprendiendo y de llegar lejos en el mundo de la programación. Mi objetivo es no solo dominar las herramientas actuales, sino también estar siempre al día con las últimas tendencias, con la ambición de aportar algo importante en el futuro de la tecnología.</p>
+
+            <p>Estoy comprometido con mi crecimiento personal y profesional, y siempre busco nuevos retos que me ayuden a mejorar. Con una actitud positiva y muchas ganas de aprender, estoy listo para sumarme a proyectos que me permitan seguir avanzando en mi carrera.</p>
+        </div>
+
+        <div id="skills" class="section">
+            <h2 onclick="changeTextColor(this)">Conocimientos</h2>
+            <div class="skills-box">
+                <h3>Frontend</h3>
+                <ul>
+                    <li>HTML / HTML5</li>
+                    <li>CSS</li>
+                </ul>
+            </div>
+            <div class="skills-box">
+                <h3>Backend</h3>
+                <ul>
+                    <li>Java</li>
+                    <li>MySQL</li>
+                    <li>Python (Aún en aprendizaje)</li>
+                </ul>
+            </div>
+            <div class="skills-box">
+                <h3>Full Stack</h3>
+                <ul>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="cv" class="section">
+            <div class="cv-section">
+                <h3>Mi Currículum</h3>
+                <a href="CV- Assier Rodríguez Baeza (2).pdf">Pincha aqui para descargar el curriculum</a>
+            </div>
+        </div>
+
+        <!-- Botón y mensaje de saludo -->
+        <button class="greeting-button" onclick="showGreeting()">👋</button>
+        <div id="greetingMessage">¡Hola! Soy Assier, un apasionado programador siempre buscando nuevos desafíos. 👨‍💻</div>
+    </div>
+
+    <footer id="footer">
+        <p>📞 Teléfono: +34 611 049 626</p>
+        <p>📧 Correo electrónico: <a href="mailto:assier.rodriguez.baeza@gmail.com">assier.rodriguez.baeza@gmail.com</a></p>
+    </footer>
+
+    <script>
+        function changeBackground() {
+            const colors = ["#ff9a9e", "#fad0c4", "#fbc2eb", "#a1c4fd", "#d4fc79", "#ffde7d"];
+            document.body.style.background = `linear-gradient(135deg, ${colors[Math.floor(Math.random() * colors.length)]}, white)`;
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            const greetingMessage = document.getElementById('greetingMessage');
+            greetingMessage.classList.remove('visible');
+        }
+
+        function changeTextColor(element) {
+            const colors = ["#ff5733", "#007BFF", "#fbc2eb", "#d4fc79", "#ffde7d"];
+            element.style.color = colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function showGreeting() {
+            const greetingMessage = document.getElementById('greetingMessage');
+            greetingMessage.classList.add('visible');
+        }
+
+        window.addEventListener("load", function() {
+            document.querySelector("footer").classList.add("show-footer");
+        });
+    </script>
+</body>
+</html>
