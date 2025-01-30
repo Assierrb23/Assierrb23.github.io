@@ -31,15 +31,21 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
         }
+
+        .agranda:hover{
+            width: 2000px;
+        }
         img:hover {
             transform: scale(1.1);
         }
+        
+
         h1, h2 {
             color: #333;
             transition: color 0.3s;
         }
         h1:hover {
-            color: #ff5733;
+            color: #82dba7;
         }
         ul {
             list-style-type: none;
@@ -257,13 +263,14 @@
         <div id="cv" class="section">
             <div class="cv-section">
                 <h3>Mi Currículum</h3>
-                <img src="CV.png" alt="No funciona">
+                <img src="CV.png" alt="No funciona" class="agranda">
                 <h3>Carta de Recomendación</h3>
-                <img src="CARTA DE RECOMENDACIÓN IMSKE.png" alt="No funciona">
+                <img src="CARTA DE RECOMENDACIÓN IMSKE.png" alt="No funciona" class="agranda">
             </div>
         </div>
+        
 
-        <!-- Botón y mensaje de saludo -->
+
         <button class="greeting-button" onclick="showGreeting()">👋</button>
         <div id="greetingMessage">¡Hola! Soy Assier, un apasionado programador siempre buscando nuevos desafíos. 👨‍💻</div>
     </div>
